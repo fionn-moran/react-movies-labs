@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "cypress": "^13.5.1"
+  },
+  "dependencies": {
+    "react-query": "^3.39.3"
   }
 }

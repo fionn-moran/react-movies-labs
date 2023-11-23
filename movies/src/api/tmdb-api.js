@@ -87,4 +87,6 @@ export const getMovie = (args) => {
        throw error
     });
   };
+  // Exercise 3 completed on exercise 1 commit
+  
   

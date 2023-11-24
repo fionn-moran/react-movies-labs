@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import WatchlistIcon from "@mui/icons-material/PlaylistAdd";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
@@ -18,6 +19,7 @@ import Avatar from '@mui/material/Avatar';
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { watchlist, addToWatchlist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -30,6 +32,18 @@ export default function MovieCard({ movie, action }) {
     addToFavorites(movie);
   };
 
+  if (watchlist.find((id) => id === movie.id)) {
+    movie.watchlist = true;
+  } else {
+    movie.watchlist = false;
+  }
+  
+  const handleAddToWatchlist = (e) => {
+    e.preventDefault();
+    addToWatchlist(movie);
+  };
+  
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -37,6 +51,11 @@ export default function MovieCard({ movie, action }) {
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
+            </Avatar>
+          ) :
+          movie.watchlist ? (
+            <Avatar sx={{ backgroundColor: 'red' }}>
+                <WatchlistIcon />
             </Avatar>
           ) : null
         }
